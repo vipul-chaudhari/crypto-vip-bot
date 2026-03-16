@@ -25,17 +25,7 @@ class MegaScannerBot:
             print(f"Telegram Error: {e}")
 
     def get_all_usdt_symbols(self):
-        try:
-            tickers = self.exchange.fetch_tickers()
-            usdt_pairs = []
-            for symbol, ticker in tickers.items():
-                if symbol.endswith('/USDT') and ticker['quoteVolume'] and ticker['quoteVolume'] > 150000:
-                    usdt_pairs.append({'symbol': symbol, 'volume': ticker['quoteVolume']})
-            sorted_pairs = sorted(usdt_pairs, key=lambda x: x['volume'], reverse=True)
-            return [p['symbol'] for p in sorted_pairs[:150]]
-        except Exception as e:
-            print(f"Error fetching symbols: {e}")
-            return ['BTC/USDT', 'ETH/USDT', 'SOL/USDT']
+        return ['BTC/USDT', 'SOL/USDT', 'LTC/USDT', 'ETH/USDT', 'BNB/USDT']
 
     def fetch_data(self, symbol, timeframe, limit=100):
         try:
